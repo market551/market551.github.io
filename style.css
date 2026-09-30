@@ -309,3 +309,155 @@ footer p {
     gap: 15px;
   }
 }
+/* =========================================
+   EASY — Extended Components
+   ========================================= */
+
+.hero-label,
+.section-label {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #777;
+  margin-bottom: 24px;
+}
+
+.dark .hero-label,
+.dark .section-label {
+  color: #999;
+}
+
+.section-intro {
+  max-width: 720px;
+  color: var(--muted);
+  font-size: 18px;
+  margin-bottom: 50px;
+}
+
+.dark .section-intro {
+  color: #aaa;
+}
+
+
+/* MARKET MAP */
+
+.market-list {
+  border-top: 1px solid #444;
+}
+
+.market-card {
+  display: grid;
+  grid-template-columns: 60px 1fr 40px;
+  gap: 25px;
+  align-items: center;
+
+  padding: 30px 10px;
+
+  color: white;
+  text-decoration: none;
+
+  border-bottom: 1px solid #444;
+
+  transition:
+    padding 0.2s ease,
+    background 0.2s ease;
+}
+
+.market-card:hover {
+  padding-left: 20px;
+  padding-right: 20px;
+  background: #1b1b1b;
+}
+
+.market-card > span {
+  color: #777;
+  font-weight: 800;
+}
+
+.market-card h3 {
+  font-size: 24px;
+  margin-bottom: 6px;
+}
+
+.market-card p {
+  color: #999;
+  max-width: 650px;
+}
+
+.market-card > strong {
+  font-size: 25px;
+}
+
+
+/* MARKET FLOW */
+
+.market-map {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+  margin-top: 60px;
+}
+
+.market-map > div:not(.market-arrow) {
+  min-width: 180px;
+  padding: 30px;
+  border: 1px solid #444;
+  text-align: center;
+}
+
+.market-map strong {
+  display: block;
+  font-size: 20px;
+}
+
+.market-map span {
+  display: block;
+  color: #999;
+  margin-top: 8px;
+}
+
+.market-arrow {
+  font-size: 30px;
+  color: #888;
+}
+
+
+/* NEXT SECTION */
+
+.next-section {
+  text-align: left;
+}
+
+.next-section .section-intro {
+  margin-bottom: 30px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+  .market-card {
+    grid-template-columns: 35px 1fr 25px;
+    gap: 12px;
+  }
+
+  .market-card h3 {
+    font-size: 18px;
+  }
+
+  .market-card p {
+    font-size: 14px;
+  }
+
+  .market-map {
+    flex-direction: column;
+  }
+
+  .market-arrow {
+    transform: rotate(90deg);
+  }
+
+}
