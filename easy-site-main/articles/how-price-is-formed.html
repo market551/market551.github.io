@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Price is Formed — Microstructure & Matching Mechanics | EASY.</title>
+  <meta name="description" content="A mechanical breakdown of price formation: limit order books, aggressive market orders, bids, asks, spreads, and the matching engine algorithm.">
+  <link rel="stylesheet" href="../css/style.css">
+  <script defer src="../js/main.js"></script>
+  <link rel="canonical" href="https://market551.github.io/articles/how-price-is-formed.html">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="site-nav-container">
+      <a href="../index.html" class="site-logo">
+        EASY<span class="period">.</span>
+        <span class="tagline">Financial Markets</span>
+      </a>
+
+            <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="../start.html">Start</a></li>
+          <li><a href="../markets.html">Markets</a></li>
+          <li><a href="../history.html">History</a></li>
+          <li><a href="../how-it-works.html">How it works</a></li>
+          <li><a href="../articles.html" class="active">Articles</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn-lang" type="button" aria-label="Select Language">
+          <span>EN</span>
+          <span style="font-size: 0.65rem;">▼</span>
+        </button>
+        <button class="mobile-menu-btn" type="button" aria-label="Toggle Menu" aria-expanded="false">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="article-container">
+
+    <div class="breadcrumbs">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="../articles.html">Articles</a>
+      <span class="sep">/</span>
+      <span>How Price is Formed</span>
+    </div>
+
+    <div class="article-header" style="margin-bottom: 2rem;">
+      <h1 style="margin-bottom: 0.75rem;">How Price is Formed</h1>
+      <p class="lead" style="margin-bottom: 1.25rem;">
+        Price does not exist in an object like weight or color. It is an ephemeral event: the exact dollar amount agreed upon at the exact microsecond when an aggressive buyer consumes resting seller liquidity.
+      </p>
+
+      <div class="article-meta">
+        <span>CONVOY: CAUSAL LAYER 04</span>
+        <span>READ TIME: ~10 MIN</span>
+        <span class="pill">MICROSTRUCTURE</span>
+        <span>PEER-REVIEWED LOGIC</span>
+      </div>
+    </div>
+
+    <div class="article-body">
+
+      <!-- Fast Answer -->
+      <div class="fast-answer-box">
+        <div class="fast-answer-badge">Fast Answer</div>
+        <h2 class="fast-answer-title" style="margin-top: 0; border: none; padding: 0;">How Price is Formed in 15 Seconds?</h2>
+        <p class="fast-answer-content">
+          Price is determined by the continuous interaction of two types of orders in a <strong>Limit Order Book</strong>: passive limit orders (resting commitments to buy or sell at fixed prices) and aggressive market orders (demands for immediate execution). When buyers aggressively lift the asks, price ticks upward; when sellers aggressively hit the bids, price ticks downward.
+        </p>
+      </div>
+
+      <!-- Visual Explanation: Inside the Limit Order Book -->
+      <h2>Visual Explanation: The Limit Order Book Engine</h2>
+      <p>
+        Here is what an electronic market looks like at any given instant:
+      </p>
+
+      <div class="diagram-card">
+        <svg viewBox="0 0 620 250" width="100%" height="250" style="max-width: 580px; display: block; margin: 0 auto;">
+          <!-- Left: Bids -->
+          <rect x="30" y="30" width="250" height="190" fill="#f5fdf8" stroke="#1b5e39" stroke-width="1.5" />
+          <text x="155" y="55" font-family="mono" font-size="11" font-weight="bold" fill="#1b5e39" text-anchor="middle">BUY ORDERS (BIDS)</text>
+          <text x="155" y="70" font-family="sans-serif" font-size="9" fill="#666" text-anchor="middle">Waiting to buy at or below current price</text>
+
+          <rect x="45" y="85" width="220" height="25" fill="#eaf5ee" />
+          <text x="55" y="102" font-family="mono" font-size="11" font-weight="bold" fill="#111">BID 1: $100.00</text>
+          <text x="255" y="102" font-family="mono" font-size="10" fill="#666" text-anchor="end">100 shares</text>
+
+          <rect x="45" y="115" width="220" height="25" fill="#eaf5ee" />
+          <text x="55" y="132" font-family="mono" font-size="11" fill="#111">BID 2: $99.95</text>
+          <text x="255" y="132" font-family="mono" font-size="10" fill="#666" text-anchor="end">250 shares</text>
+
+          <rect x="45" y="145" width="220" height="25" fill="#eaf5ee" />
+          <text x="55" y="162" font-family="mono" font-size="11" fill="#111">BID 3: $99.90</text>
+          <text x="255" y="162" font-family="mono" font-size="10" fill="#666" text-anchor="end">500 shares</text>
+
+          <!-- Middle Spread -->
+          <rect x="290" y="85" width="40" height="85" fill="#fff" stroke="#111" stroke-dasharray="2" />
+          <text x="310" y="125" font-family="mono" font-size="9" font-weight="bold" fill="#c5221f" text-anchor="middle" transform="rotate(-90 310 125)">SPREAD $0.05</text>
+
+          <!-- Right: Asks -->
+          <rect x="340" y="30" width="250" height="190" fill="#fdf6f6" stroke="#c5221f" stroke-width="1.5" />
+          <text x="465" y="55" font-family="mono" font-size="11" font-weight="bold" fill="#c5221f" text-anchor="middle">SELL ORDERS (ASKS)</text>
+          <text x="465" y="70" font-family="sans-serif" font-size="9" fill="#666" text-anchor="middle">Waiting to sell at or above current price</text>
+
+          <rect x="355" y="85" width="220" height="25" fill="#fde8e8" />
+          <text x="365" y="102" font-family="mono" font-size="11" font-weight="bold" fill="#111">ASK 1: $100.05</text>
+          <text x="565" y="102" font-family="mono" font-size="10" fill="#666" text-anchor="end">80 shares</text>
+
+          <rect x="355" y="115" width="220" height="25" fill="#fde8e8" />
+          <text x="365" y="132" font-family="mono" font-size="11" fill="#111">ASK 2: $100.10</text>
+          <text x="565" y="132" font-family="mono" font-size="10" fill="#666" text-anchor="end">300 shares</text>
+
+          <rect x="355" y="145" width="220" height="25" fill="#fde8e8" />
+          <text x="365" y="162" font-family="mono" font-size="11" fill="#111">ASK 3: $100.15</text>
+          <text x="565" y="162" font-family="mono" font-size="10" fill="#666" text-anchor="end">600 shares</text>
+
+          <text x="310" y="235" font-family="sans-serif" font-size="9" text-anchor="middle" fill="#666">
+            If an aggressive buyer sends a Market Order for 100 shares, they eat all 80 @ $100.05 and 20 @ $100.10. Price rises!
+          </text>
+        </svg>
+        <div class="diagram-caption">Figure 4.1: The continuous limit order book structure. Price is pushed up or down by aggressive order consumption.</div>
+      </div>
+
+      <!-- What is it? -->
+      <h2>What is It?</h2>
+      <p>
+        In financial economics, price formation is the mechanical process by which incoming information, private beliefs, and cash balances are translated into executed trades. The price you see flashing on a screen (the "Last Price") is merely the historical record of the most recent completed transaction.
+      </p>
+
+      <!-- Why Does it Exist? -->
+      <h2>Why Does It Exist?</h2>
+      <p>
+        Because circumstances are constantly changing. If a freeze hits Brazilian coffee plantations overnight, nobody knows the exact "correct" new price of coffee. The price formation engine allows thousands of global participants to submit bids and asks until a new consensus clearing level emerges through real capital commitments.
+      </p>
+
+      <!-- How Does it Work? -->
+      <h2>How Does It Work?</h2>
+      <p>
+        Order matching engines operate on two non-negotiable rules:
+      </p>
+      <ul>
+        <li><strong>Price Priority:</strong> The highest bid and the lowest ask are always executed first. A buyer willing to pay $100.10 gets filled before a buyer offering $100.00.</li>
+        <li><strong>Time Priority (FIFO):</strong> Among orders placed at the exact same price level, the order that arrived first at the matching engine's server is executed first.</li>
+      </ul>
+
+      <!-- Simple Example -->
+      <h2>Simple Example</h2>
+      <p>
+        Suppose the highest bid for a stock is $50.00 (someone wants to buy 100 shares), and the lowest ask is $50.10 (someone wants to sell 100 shares). No trade happens; they sit looking at each other across the 10-cent spread.
+      </p>
+      <p>
+        Suddenly, breaking positive news hits. An impatient buyer submits a <strong>Market Buy Order</strong> for 100 shares. The matching engine matches them immediately with the seller at $50.10. The new "last traded price" prints as $50.10. Price just formed and moved!
+      </p>
+
+      <!-- History & Evolution -->
+      <h2>History & Evolution</h2>
+      <p>
+        For centuries, price was formed through vocal auctions: shouting and hand signals on trading floors (open outcry). Specialists stood at designated posts with physical paper ledger binders recording limit orders.
+      </p>
+      <p>
+        Beginning in the 1970s and culminating in the 2000s, exchanges migrated to fully automated electronic limit order books (such as Nasdaq's INET and the CME's Globex platform). Today, trades are executed deterministically in hardware inside exchange data centers in Secaucus and Carteret, New Jersey, in under 50 microseconds.
+      </p>
+
+      <!-- Evidence / Data -->
+      <h2>Evidence & Data</h2>
+      <section class="evidence-block">
+        <div class="evidence-header">Classification of Knowledge: Price Formation</div>
+        <div class="classification-grid">
+          <div style="background: var(--color-surface); padding: 1rem; border: 1px solid var(--color-border);">
+            <span class="class-tag tag-fact">FACT</span>
+            <p style="font-size: 0.85rem; color: var(--color-ink-secondary); margin: 0;">
+              A stock price cannot change without an aggressive order crossing the bid-ask spread to trade against resting passive liquidity.
+            </p>
+          </div>
+          <div style="background: var(--color-surface); padding: 1rem; border: 1px solid var(--color-border);">
+            <span class="class-tag tag-data">DATA</span>
+            <p style="font-size: 0.85rem; color: var(--color-ink-secondary); margin: 0;">
+              In US equity markets, the Securities Information Processor (SIP) consolidates the National Best Bid and Offer (NBBO) across 16 registered exchanges.
+            </p>
+          </div>
+          <div style="background: var(--color-surface); padding: 1rem; border: 1px solid var(--color-border);">
+            <span class="class-tag tag-interpretation">INTERPRETATION</span>
+            <p style="font-size: 0.85rem; color: var(--color-ink-secondary); margin: 0;">
+              Order flow imbalance (the ratio of aggressive buying vs aggressive selling) is interpreted by quantitative microstructuralists as the primary short-term driver of price variance.
+            </p>
+          </div>
+          <div style="background: var(--color-surface); padding: 1rem; border: 1px solid var(--color-border);">
+            <span class="class-tag tag-hypothesis">HYPOTHESIS</span>
+            <p style="font-size: 0.85rem; color: var(--color-ink-secondary); margin: 0;">
+              Kyle's Model of Price Impact (1985) hypothesizes that informed traders disguise their size to minimize linear price impact (&lambda;) against market makers.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Limitations -->
+      <h2>Limitations</h2>
+      <ul>
+        <li><strong>Flash Crashes:</strong> When algorithmic market makers withdraw their resting bids during high volatility, a modest sell order can punch through an empty book and cause an artificial 10% plunge in seconds.</li>
+        <li><strong>Hidden Liquidity:</strong> "Iceberg orders" allow institutional traders to display only 100 shares publicly while hiding 50,000 shares behind the scenes.</li>
+      </ul>
+
+      <!-- Common Misunderstandings -->
+      <h2>Common Misunderstandings</h2>
+      <div style="background: var(--color-surface); border: 1px solid var(--color-border); padding: 1.5rem; margin: 1.5rem 0;">
+        <h4 style="color: #c5221f; margin-top: 0;">Fallacy: "There Were More Buyers Than Sellers Today"</h4>
+        <p style="font-size: 0.95rem; color: var(--color-ink-secondary); line-height: 1.55; margin-bottom: 0;">
+          In every completed trade, exactly one share is bought for every one share sold. The number of shares bought always exactly equals the number of shares sold. Price moves not because of an unequal number of people, but because one side is more <em>impatient and aggressive</em>, crossing the spread to consume resting orders.
+        </p>
+      </div>
+
+      <!-- Deep Dive -->
+      <h2>Deep Dive: The Maker-Taker Pricing Model</h2>
+      <p>
+        Modern electronic exchanges incentivize liquidity by paying <strong>rebates</strong> to "makers" (participants who post passive limit orders that add depth to the book) while charging transaction fees to "takers" (participants who submit market orders that consume depth). This model fuels high-frequency quantitative market-making firms.
+      </p>
+
+      <!-- Key Takeaways -->
+      <h2>Key Takeaways</h2>
+      <ul>
+        <li>Price is formed at the intersection of bids and asks in a limit order book.</li>
+        <li>Passive limit orders provide liquidity; aggressive market orders consume it.</li>
+        <li>Execution follows deterministic price and time priority (FIFO).</li>
+        <li>For every buyer who executes, there is an exact seller on the opposite side.</li>
+      </ul>
+
+      <!-- Interactive Concept Test -->
+      <div class="concept-test-widget"
+           data-correct-reason="Correct! An aggressive market order demands immediate execution right now, crossing the bid-ask spread to trade against resting passive limit orders."
+           data-incorrect-reason="A limit order rests patiently on the book; what type of order executes immediately against available resting sellers?">
+        <div class="test-widget-badge">TEST YOUR UNDERSTANDING / ARTICLE 04</div>
+        <div class="test-widget-prompt">
+          What happens when a trader submits an aggressive "Market Buy Order" for 500 shares?
+        </div>
+        <div class="test-options-list">
+          <button class="test-option-btn" type="button" data-correct="true">
+            <span>A.</span>
+            <span>It executes immediately by consuming the lowest available resting Ask orders on the book.</span>
+          </button>
+          <button class="test-option-btn" type="button" data-correct="false">
+            <span>B.</span>
+            <span>It waits indefinitely until the company CEO approves the transaction.</span>
+          </button>
+          <button class="test-option-btn" type="button" data-correct="false">
+            <span>C.</span>
+            <span>It creates 500 brand new shares that never existed before.</span>
+          </button>
+        </div>
+        <div class="test-feedback"></div>
+      </div>
+
+      <!-- Related Articles -->
+      <h2>Related Articles</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
+        <a href="./what-is-a-market.html" style="background: var(--color-surface); border: 1px solid var(--color-border); padding: 1.25rem; text-decoration: none;">
+          <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--color-ink-muted);">PREVIOUS CHAPTER 03</div>
+          <strong style="font-size: 1.1rem; color: var(--color-ink);">← What is a Market?</strong>
+          <p style="font-size: 0.85rem; color: var(--color-ink-secondary); margin: 0.35rem 0 0;">How markets eliminate bilateral search friction.</p>
+        </a>
+
+        <a href="./market-participants.html" style="background: var(--color-surface); border: 1px solid var(--color-border); padding: 1.25rem; text-decoration: none;">
+          <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--color-ink-muted);">NEXT CHAPTER 05</div>
+          <strong style="font-size: 1.1rem; color: var(--color-ink);">Market Participants →</strong>
+          <p style="font-size: 0.85rem; color: var(--color-ink-secondary); margin: 0.35rem 0 0;">Who participates in the order book and why.</p>
+        </a>
+      </div>
+
+      <!-- Ad Slot 2 -->
+      <div class="ad-slot">
+        <div class="ad-slot-label">ADVERTISEMENT</div>
+        <p class="ad-slot-placeholder-text">
+          Reserved for academic market microstructure laboratories and quantitative finance institutes.
+        </p>
+        <div class="ad-slot-disclaimer">Zero broker referrals · Static transparent delivery</div>
+      </div>
+
+    </div>
+
+    <!-- Article Navigation -->
+    <div class="concept-nav-bar">
+      <a href="./what-is-a-market.html" class="concept-nav-link">
+        <span class="concept-nav-label">← Previous Chapter</span>
+        <span class="concept-nav-title">What is a Market?</span>
+      </a>
+      <a href="./market-participants.html" class="concept-nav-link next">
+        <span class="concept-nav-label">Next Chapter →</span>
+        <span class="concept-nav-title">Market Participants</span>
+      </a>
+    </div>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="site-logo" style="margin-bottom: 0.75rem;">
+            EASY<span class="period">.</span>
+          </div>
+          <p>
+            An independent, completely free static educational publication about financial markets. Dedicated to logic first, evidence second, and labels last.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html">Homepage</a></li>
+            <li><a href="../start.html">Start Here</a></li>
+            <li><a href="../markets.html">Markets Directory</a></li>
+            <li><a href="../articles.html">Article Index</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Initial Articles</h4>
+          <ul class="footer-links">
+            <li><a href="./what-is-trade.html">What is Trade?</a></li>
+            <li><a href="./what-is-money.html">What is Money?</a></li>
+            <li><a href="./what-is-a-market.html">What is a Market?</a></li>
+            <li><a href="./how-price-is-formed.html">Price Formation</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Integrity Guarantee</h4>
+          <div style="font-size: 0.85rem; color: var(--color-ink-secondary); line-height: 1.5;">
+            Zero retail trading signals. Zero subscription paywalls. Educational public good.
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 EASY. Free Public Financial Education.</div>
+        <div>Logic First · Evidence Second · Labels Last</div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

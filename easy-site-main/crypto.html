@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cryptographic Assets — Ledger Structure & Decentralized Liquidity | EASY.</title>
+  <meta name="description" content="A structural analysis of crypto markets: distributed consensus ledgers, automated market makers, centralized exchanges, stablecoin plumbing, and settlement mechanics without speculative hype.">
+  <link rel="stylesheet" href="./css/style.css">
+  <script defer src="./js/main.js"></script>
+  <link rel="canonical" href="https://market551.github.io/crypto.html">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="site-nav-container">
+      <a href="index.html" class="site-logo">
+        EASY<span class="period">.</span>
+        <span class="tagline">Financial Markets</span>
+      </a>
+
+            <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="start.html">Start</a></li>
+          <li><a href="markets.html" class="active">Markets</a></li>
+          <li><a href="history.html">History</a></li>
+          <li><a href="how-it-works.html">How it works</a></li>
+          <li><a href="articles.html">Articles</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn-lang" type="button" aria-label="Select Language">
+          <span>EN</span>
+          <span style="font-size: 0.65rem;">▼</span>
+        </button>
+        <button class="mobile-menu-btn" type="button" aria-label="Toggle Menu" aria-expanded="false">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-container">
+
+    <div class="breadcrumbs">
+      <a href="./index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="./markets.html">Markets</a>
+      <span class="sep">/</span>
+      <span>Crypto</span>
+    </div>
+
+    <div class="article-header" style="max-width: 840px; margin-bottom: 2.5rem;">
+      <div style="font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-ink-muted); margin-bottom: 0.5rem;">
+        MARKET BLUEPRINT · DISTRIBUTED LEDGER ASSETS
+      </div>
+      <h1 style="margin-bottom: 1rem;">Cryptographic Assets</h1>
+      <p class="lead">
+        Stripped of social media speculation, cryptographic assets are entries in distributed, verifiable state machines. They introduce native digital scarcity, programmatic self-custody, and automated settlement without traditional banking intermediaries.
+      </p>
+    </div>
+
+    <!-- Fast Answer Box -->
+    <div class="fast-answer-box">
+      <div class="fast-answer-badge">Fast Structural Summary</div>
+      <h2 class="fast-answer-title" style="margin-top: 0; border: none; padding: 0;">What is Crypto Market Structure at its Mechanical Core?</h2>
+      <p class="fast-answer-content">
+        A cryptographic market combines two distinct liquidity paradigms: (1) Off-chain centralized exchanges (CEXs) operating traditional limit order books with private databases, and (2) On-chain decentralized protocols (DEXs) using deterministic smart contracts and Automated Market Maker (AMM) math to execute swaps without human order books.
+      </p>
+    </div>
+
+    <!-- Visual: The CEX vs DEX Architecture -->
+    <section style="margin: 3.5rem 0;">
+      <h2>1. The Bifurcated Market Structure: CEX vs. DEX</h2>
+      <p>
+        Most trading volume occurs through traditional centralized intermediaries, while true blockchain settlement happens natively on distributed networks:
+      </p>
+
+      <div class="diagram-card">
+        <svg viewBox="0 0 650 240" width="100%" height="240" style="max-width: 620px; display: block; margin: 0 auto;">
+          <!-- CEX Architecture -->
+          <rect x="20" y="30" width="280" height="180" fill="#f5f4ef" stroke="#111" stroke-width="1.5" />
+          <text x="160" y="60" font-family="monospace" font-size="12" font-weight="bold" text-anchor="middle">CENTRALIZED EXCHANGE (CEX)</text>
+          <text x="160" y="80" font-family="sans-serif" font-size="9" text-anchor="middle" fill="#666">Binance, Coinbase, Kraken</text>
+
+          <rect x="40" y="100" width="240" height="40" fill="#fff" stroke="#111" />
+          <text x="160" y="125" font-family="sans-serif" font-size="10" text-anchor="middle">Internal Off-Chain SQL Ledger</text>
+
+          <text x="160" y="165" font-family="sans-serif" font-size="9" text-anchor="middle" fill="#c5221f">• Custodial: Exchange holds private keys</text>
+          <text x="160" y="180" font-family="sans-serif" font-size="9" text-anchor="middle" fill="#1b5e39">• High speed microsecond execution</text>
+
+          <!-- DEX Architecture -->
+          <rect x="350" y="30" width="280" height="180" fill="#edf3f8" stroke="#1e3a5f" stroke-width="1.5" />
+          <text x="490" y="60" font-family="monospace" font-size="12" font-weight="bold" text-anchor="middle" fill="#1e3a5f">DECENTRALIZED EXCHANGE (DEX)</text>
+          <text x="490" y="80" font-family="sans-serif" font-size="9" text-anchor="middle" fill="#666">Uniswap, Curve, Raydium</text>
+
+          <rect x="370" y="100" width="240" height="40" fill="#fff" stroke="#1e3a5f" />
+          <text x="490" y="125" font-family="mono" font-size="10" text-anchor="middle">Smart Contract: x × y = k</text>
+
+          <text x="490" y="165" font-family="sans-serif" font-size="9" text-anchor="middle" fill="#1b5e39">• Non-custodial: User retains keys</text>
+          <text x="490" y="180" font-family="sans-serif" font-size="9" text-anchor="middle" fill="#c5221f">• Constrained by block times & gas fees</text>
+        </svg>
+        <div class="diagram-caption">Figure 8.1: Structural contrast between custodial matching engines and permissionless liquidity pools.</div>
+      </div>
+    </section>
+
+    <!-- Stablecoins: The Real Dollar Backbone -->
+    <section style="margin: 3.5rem 0;">
+      <h2>2. Stablecoins: The Dollar Plumbing of Digital Markets</h2>
+      <p>
+        Public blockchains run on native volatile tokens (Bitcoin, Ether), but over 85% of market volume is denominated in <strong>fiat-pegged stablecoins</strong> (such as USDT and USDC):
+      </p>
+
+      <div style="background: var(--color-surface); border: 1px solid var(--color-border-dark); padding: 2rem; margin: 1.5rem 0;">
+        <h3 style="margin-top: 0; font-size: 1.25rem;">Why Are Stablecoins Indispensable?</h3>
+        <ul style="padding-left: 1.25rem; font-size: 0.95rem; color: var(--color-ink-secondary); line-height: 1.6; margin-bottom: 0;">
+          <li><strong>Avoiding Traditional Banking Rails:</strong> International wire transfers between banks take 2 to 5 business days and close on weekends. Stablecoins move 24/7 in seconds.</li>
+          <li><strong>Universal Numeraire:</strong> Traders can exit volatile risk positions into stable dollar claims without initiating a taxable fiat withdrawal to a domestic bank account.</li>
+          <li><strong>Reserve Backing:</strong> Fully collateralized stablecoin issuers hold short-term US Treasury bills and cash in commercial custodians, minting 1 token for each $1 deposited.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Structural Risks & Microstructure Bottlenecks -->
+    <section style="margin: 3.5rem 0;">
+      <h2>3. Structural Vulnerabilities & Microstructure Realities</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+        <div style="background: var(--color-surface); border: 1px solid var(--color-border); padding: 1.5rem;">
+          <h4 style="color: #c5221f;">1. Custodial Insolvency Risk</h4>
+          <p style="font-size: 0.9rem; color: var(--color-ink-secondary); line-height: 1.55;">
+            When users deposit funds onto centralized exchanges, they become unsecured general creditors. If an exchange commits fraud or commingles customer balances (e.g., Mt. Gox, FTX), customers suffer total loss without sovereign FDIC insurance.
+          </p>
+        </div>
+
+        <div style="background: var(--color-surface); border: 1px solid var(--color-border); padding: 1.5rem;">
+          <h4 style="color: #c5221f;">2. Smart Contract Exploits</h4>
+          <p style="font-size: 0.9rem; color: var(--color-ink-secondary); line-height: 1.55;">
+            DeFi protocols run on public code. Mathematical bugs, re-entrancy vulnerabilities, or flash loan price oracle manipulations can drain millions in seconds with zero legal recourse.
+          </p>
+        </div>
+
+        <div style="background: var(--color-surface); border: 1px solid var(--color-border); padding: 1.5rem;">
+          <h4 style="color: #c5221f;">3. MEV (Maximal Extractable Value)</h4>
+          <p style="font-size: 0.9rem; color: var(--color-ink-secondary); line-height: 1.55;">
+            Because pending transactions sit in public blockchain "mempools," sophisticated searcher bots front-run and sandwich user orders by bribing validators, creating hidden slippage costs.
+          </p>
+        </div>
+
+        <div style="background: var(--color-surface); border: 1px solid var(--color-border); padding: 1.5rem;">
+          <h4 style="color: #c5221f;">4. Fragmented Liquidity</h4>
+          <p style="font-size: 0.9rem; color: var(--color-ink-secondary); line-height: 1.55;">
+            Liquidity is scattered across dozens of incompatible Layer-1 and Layer-2 blockchains. Cross-chain bridges designed to connect them are historically among the most hacked targets in financial history.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ad Slot -->
+    <div class="ad-slot">
+      <div class="ad-slot-label">ADVERTISEMENT</div>
+      <p class="ad-slot-placeholder-text">
+        Reserved for open-source cryptography research and blockchain cybersecurity foundations.
+      </p>
+      <div class="ad-slot-disclaimer">Zero meme-coin promotions · Zero yield-farming referral schemes</div>
+    </div>
+
+    <!-- Evidence & Data Classification -->
+    <section class="evidence-block">
+      <div class="evidence-header">
+        <span>Scientific Classification of Cryptographic Market Data</span>
+      </div>
+      <div class="classification-grid">
+        <div style="background: var(--color-surface); padding: 1rem; border: 1px solid var(--color-border);">
+          <span class="class-tag tag-fact">FACT</span>
+          <p style="font-size: 0.85rem; color: var(--color-ink-secondary); margin: 0;">
+            Transactions settled on the Bitcoin or Ethereum base blockchains cannot be reversed by court order, credit card chargeback, or bank manager intervention.
+          </p>
+        </div>
+
+        <div style="background: var(--color-surface); padding: 1rem; border: 1px solid var(--color-border);">
+          <span class="class-tag tag-data">DATA</span>
+          <p style="font-size: 0.85rem; color: var(--color-ink-secondary); margin: 0;">
+            The aggregate circulating supply of dollar-backed stablecoins exceeds $150 billion, holding major allocations of 3-month US Treasury bills.
+          </p>
+        </div>
+
+        <div style="background: var(--color-surface); padding: 1rem; border: 1px solid var(--color-border);">
+          <span class="class-tag tag-interpretation">INTERPRETATION</span>
+          <p style="font-size: 0.85rem; color: var(--color-ink-secondary); margin: 0;">
+            High on-chain transaction volume is interpreted as network utility, though wash trading and algorithmic bot churning can significantly inflate metrics.
+          </p>
+        </div>
+
+        <div style="background: var(--color-surface); padding: 1rem; border: 1px solid var(--color-border);">
+          <span class="class-tag tag-hypothesis">HYPOTHESIS</span>
+          <p style="font-size: 0.85rem; color: var(--color-ink-secondary); margin: 0;">
+            The "Digital Gold" hypothesis argues that programmatic supply caps enable Bitcoin to act as a long-term inflation hedge. Empirical correlations show it frequently trades as a high-beta risk asset.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Concept Test -->
+    <div class="concept-test-widget"
+         data-correct-reason="Correct! When using a centralized exchange, the exchange owns the blockchain private keys and simply maintains an internal SQL balance for you; only self-custodial wallets give you cryptographic ownership."
+         data-incorrect-reason="Examine the custodial relationship: where are the private cryptographic keys held when you log in with an email and password?">
+      <div class="test-widget-badge">MECHANICS TEST / CRYPTO CUSTODY</div>
+      <div class="test-widget-prompt">
+        When an individual keeps their crypto balance inside an account on a centralized exchange, who holds the actual cryptographic private keys that control the coins on the blockchain?
+      </div>
+      <div class="test-options-list">
+        <button class="test-option-btn" type="button" data-correct="false">
+          <span>A.</span>
+          <span>The individual user always controls their own private keys automatically.</span>
+        </button>
+        <button class="test-option-btn" type="button" data-correct="true">
+          <span>B.</span>
+          <span>The centralized exchange controls the private keys; the user is merely an unsecured creditor with an account balance.</span>
+        </button>
+        <button class="test-option-btn" type="button" data-correct="false">
+          <span>C.</span>
+          <span>The central bank of the user's home country holds the keys in an escrow vault.</span>
+        </button>
+      </div>
+      <div class="test-feedback"></div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <div class="concept-nav-bar">
+      <a href="./options.html" class="concept-nav-link">
+        <span class="concept-nav-label">← Previous Market</span>
+        <span class="concept-nav-title">Options Market</span>
+      </a>
+      <a href="./articles.html" class="concept-nav-link next">
+        <span class="concept-nav-label">Next Section →</span>
+        <span class="concept-nav-title">Analytical Articles Directory</span>
+      </a>
+    </div>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="site-logo" style="margin-bottom: 0.75rem;">
+            EASY<span class="period">.</span>
+          </div>
+          <p>
+            An independent, completely free static educational publication about financial markets. Dedicated to logic first, evidence second, and labels last.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Market Guides</h4>
+          <ul class="footer-links">
+            <li><a href="./forex.html">Forex System</a></li>
+            <li><a href="./commodities.html">Commodity System</a></li>
+            <li><a href="./stocks.html">Equities System</a></li>
+            <li><a href="./bonds.html">Fixed Income System</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Derivatives & Crypto</h4>
+          <ul class="footer-links">
+            <li><a href="./futures.html">Futures Architecture</a></li>
+            <li><a href="./options.html">Options Mechanics</a></li>
+            <li><a href="./crypto.html">Crypto Structure</a></li>
+            <li><a href="./articles.html">Complete Article Index</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Integrity Guarantee</h4>
+          <div style="font-size: 0.85rem; color: var(--color-ink-secondary); line-height: 1.5;">
+            Zero token shilling. Zero sponsored ICO reviews. Unbiased structural mechanics.
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 EASY. Free Public Financial Education.</div>
+        <div>Logic First · Evidence Second · Labels Last</div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

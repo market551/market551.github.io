@@ -1,0 +1,6 @@
+{
+  "name": "EASY. Financial Markets Education",
+  "description": "A completely free static educational publication explaining how financial markets actually work. Logic first, evidence second, labels last.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
