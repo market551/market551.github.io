@@ -1339,3 +1339,10 @@ details.deep-dive .deep-dive-content {
 /* Ads stay hidden unless js/ads-config.js turns them on (no empty boxes, no flash) */
 html:not(.ads-on) .ad-slot { display: none !important; }
 .ad-slot-content { max-width: 100%; overflow: hidden; margin: 0 auto; }
+
+/* Heading levels kept in order: footer titles are paragraphs, card titles are h3.sub-h */
+.footer-col .footer-h { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-ink); margin-bottom: 1rem; font-weight: 600; }
+h3.sub-h { font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-ink-muted); font-family: var(--font-sans); font-weight: 600; margin-bottom: 0.5rem; line-height: 1.3; }
+.skip-link { position: absolute; left: -9999px; top: 0; z-index: 1000; background: var(--color-ink); color: #fff; padding: 0.75rem 1rem; text-decoration: none; }
+.skip-link:focus { left: 0.5rem; top: 0.5rem; }
+main:focus { outline: none; }
