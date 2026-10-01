@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Risk — Ruin, Asymmetry & Capital Preservation | EASY.</title>
+  <meta name="description" content="A first-principles structural breakdown of financial risk: market risk, credit risk, liquidity risk, operational failure, fat tails, and the absorbing barrier of ruin.">
+  <link rel="stylesheet" href="../css/style.css">
+  <script defer src="../js/main.js"></script>
+  <link rel="canonical" href="https://market551.github.io/articles/risk.html">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="site-nav-container">
+      <a href="../index.html" class="site-logo">
+        EASY<span class="period">.</span>
+        <span class="tagline">Financial Markets</span>
+      </a>
+
+            <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="../start.html">Start</a></li>
+          <li><a href="../markets.html">Markets</a></li>
+          <li><a href="../history.html">History</a></li>
+          <li><a href="../how-it-works.html">How it works</a></li>
+          <li><a href="../articles.html" class="active">Articles</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn-lang" type="button" aria-label="Select Language">
+          <span>EN</span>
+          <span style="font-size: 0.65rem;">▼</span>
+        </button>
+        <button class="mobile-menu-btn" type="button" aria-label="Toggle Menu" aria-expanded="false">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="article-container">
+
+    <div class="breadcrumbs">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="../articles.html">Articles</a>
+      <span class="sep">/</span>
+      <span>Risk</span>
+    </div>
+
+    <div class="article-header" style="margin-bottom: 2rem;">
+      <h1 style="margin-bottom: 0.75rem;">Risk</h1>
+      <p class="lead" style="margin-bottom: 1.25rem;">
+        Risk is not the chance of an asset's price wobbling tomorrow. Real risk is the exposure to irreversible, permanent impairment of capital: hitting the absorbing barrier of zero where the game ends forever.
+      </p>
+
+      <div class="article-meta">
+        <span>CONVOY: CAUSAL LAYER 08</span>
+        <span>READ TIME: ~10 MIN</span>
+        <span class="pill">RISK ARCHITECTURE</span>
+        <span>PEER-REVIEWED LOGIC</span>
+      </div>
+    </div>
+
+    <div class="article-body">
+
+      <!-- Fast Answer -->
+      <div class="fast-answer-box">
+        <div class="fast-answer-badge">Fast Answer</div>
+        <h2 class="fast-answer-title" style="margin-top: 0; border: none; padding: 0;">What is Risk in 15 Seconds?</h2>
+        <p class="fast-answer-content">
+          Financial risk is the quantifiable possibility that the real outcome of an investment will deviate negatively from the expected outcome, leading to the permanent loss of purchasing power. Unlike mathematical variance, true financial risk is asymmetric: losing 50% requires a 100% gain just to break even, and losing 100% terminates participation permanently.
+        </p>
+      </div>
+
+      <!-- Visual Explanation: The Asymmetry of Capital Recovery -->
+      <h2>Visual Explanation: The Mathematical Trap of Loss Recovery</h2>
+      <p>
+        Losses compound against capital non-linearly:
+      </p>
+
+      <div class="diagram-card">
+        <svg viewBox="0 0 620 200" width="100%" height="200" style="max-width: 580px; display: block; margin: 0 auto;">
+          <!-- Table of Loss vs Required Gain -->
+          <rect x="30" y="30" width="560" height="140" fill="#fff" stroke="#111" />
+          <line x1="30" y1="70" x2="590" y2="70" stroke="#111" stroke-width="1.5" />
+          <line x1="310" y1="30" x2="310" y2="170" stroke="#111" stroke-width="1.5" />
+
+          <text x="170" y="55" font-family="mono" font-size="11" font-weight="bold" text-anchor="middle" fill="#c5221f">CAPITAL LOSS SUFFERED</text>
+          <text x="450" y="55" font-family="mono" font-size="11" font-weight="bold" text-anchor="middle" fill="#1b5e39">REQUIRED GAIN TO BREAK EVEN</text>
+
+          <text x="170" y="95" font-family="mono" font-size="11" text-anchor="middle">-10% Loss ($100 → $90)</text>
+          <text x="450" y="95" font-family="mono" font-size="11" text-anchor="middle">+11.1% Gain required</text>
+
+          <text x="170" y="120" font-family="mono" font-size="11" text-anchor="middle">-50% Loss ($100 → $50)</text>
+          <text x="450" y="120" font-family="mono" font-size="11" font-weight="bold" text-anchor="middle" fill="#c5221f">+100.0% Gain required</text>
+
+          <text x="170" y="145" font-family="mono" font-size="11" font-weight="bold" text-anchor="middle" fill="#c5221f">-90% Loss ($100 → $10)</text>
+          <text x="450" y="145" font-family="mono" font-size="11" font-weight="bold" text-anchor="middle" fill="#c5221f">+900.0% Gain required</text>
+        </svg>
+        <div class="diagram-caption">Figure 8.1: The brutal arithmetic of drawdowns. Protecting capital is mathematically superior to chasing high returns.</div>
+      </div>
+
+      <!-- The Taxonomy of Risk -->
+      <h2>1. The Four Primary Dimensions of Financial Risk</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+        <div style="background: var(--color-surface); border: 1px solid var(--color-border); padding: 1.25rem;">
+          <h4 style="color: #c5221f;">1. Market Risk (Directional)</h4>
+          <p style="font-size: 0.88rem; color: var(--color-ink-secondary); line-height: 1.5;">
+            The risk that broad macroeconomic shifts (recessions, inflation, rate hikes) drag down the market price of the entire asset class simultaneously.
+          </p>
+        </div>
+
+        <div style="background: var(--color-surface); border: 1px solid var(--color-border); padding: 1.25rem;">
+          <h4 style="color: #c5221f;">2. Credit / Counterparty Risk</h4>
+          <p style="font-size: 0.88rem; color: var(--color-ink-secondary); line-height: 1.5;">
+            The risk that the borrower or exchange holding your money goes bankrupt and legally defaults on their contractual obligations.
+          </p>
+        </div>
+
+        <div style="background: var(--color-surface); border: 1px solid var(--color-border); padding: 1.25rem;">
+          <h4 style="color: #c5221f;">3. Liquidity Risk</h4>
+          <p style="font-size: 0.88rem; color: var(--color-ink-secondary); line-height: 1.5;">
+            The risk of being unable to sell an asset when you desperately need cash without suffering a catastrophic 30%–50% price concession.
+          </p>
+        </div>
+
+        <div style="background: var(--color-surface); border: 1px solid var(--color-border); padding: 1.25rem;">
+          <h4 style="color: #c5221f;">4. Operational & Fraud Risk</h4>
+          <p style="font-size: 0.88rem; color: var(--color-ink-secondary); line-height: 1.5;">
+            Software bugs, smart contract hacks, rogue traders, accounting fraud (Enron, Wirecard), or custodial seizure.
+          </p>
+        </div>
+      </div>
+
+      <!-- Simple Example: Ruin and Ergodicity -->
+      <h2>Simple Example: The Ruin Problem</h2>
+      <p>
+        Imagine a game with a 99% chance of doubling your money and a 1% chance of total loss. If 100 different people play once, 99 walk away rich (ensemble average). But if <em>one</em> person plays the game repeatedly 100 times in sequence, they are virtually guaranteed to hit the 1% catastrophic event and lose everything. In finance, this is known as <strong>non-ergodicity</strong>: you cannot benefit from future positive expected returns if you hit zero today.
+      </p>
+
+      <!-- Evidence / Data -->
+      <h2>Evidence & Data</h2>
+      <section class="evidence-block">
+        <div class="evidence-header">Classification of Knowledge: Risk</div>
+        <div class="classification-grid">
+          <div style="background: var(--color-surface); padding: 1rem; border: 1px solid var(--color-border);">
+            <span class="class-tag tag-fact">FACT</span>
+            <p style="font-size: 0.85rem; color: var(--color-ink-secondary); margin: 0;">
+              Leverage mathematically increases the probability of hitting an absorbing barrier of insolvency prior to reaching an investment's long-term horizon.
+            </p>
+          </div>
+          <div style="background: var(--color-surface); padding: 1rem; border: 1px solid var(--color-border);">
+            <span class="class-tag tag-data">DATA</span>
+            <p style="font-size: 0.85rem; color: var(--color-ink-secondary); margin: 0;">
+              Over the last 100 years, the US stock market has suffered peak-to-trough drawdowns exceeding -80% (1929–1932) and -50% (2000–2002 and 2007–2009).
+            </p>
+          </div>
+          <div style="background: var(--color-surface); padding: 1rem; border: 1px solid var(--color-border);">
+            <span class="class-tag tag-interpretation">INTERPRETATION</span>
+            <p style="font-size: 0.85rem; color: var(--color-ink-secondary); margin: 0;">
+              Value at Risk (VaR) models are interpreted by banks as risk limits, but they notoriously fail during tail-risk crises because historical correlations spike to 1.0.
+            </p>
+          </div>
+          <div style="background: var(--color-surface); padding: 1rem; border: 1px solid var(--color-border);">
+            <span class="class-tag tag-hypothesis">HYPOTHESIS</span>
+            <p style="font-size: 0.85rem; color: var(--color-ink-secondary); margin: 0;">
+              Taleb's "Black Swan" hypothesis asserts that high-impact economic events are fundamentally unpredictable through standard Gaussian statistical models.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Key Takeaways -->
+      <h2>Key Takeaways</h2>
+      <ul>
+        <li>Real risk is the permanent destruction of capital, not temporary quote wiggles.</li>
+        <li>Loss recovery is mathematically asymmetric: a 50% loss requires a 100% gain to repair.</li>
+        <li>Survival is the prerequisite for compounding; any strategy with a risk of total ruin fails over time.</li>
+        <li>Diversification across non-correlated asset classes is the only structural free lunch in risk management.</li>
+      </ul>
+
+      <!-- Interactive Concept Test -->
+      <div class="concept-test-widget"
+           data-correct-reason="Correct! If a portfolio drops by 50% (from $100 to $50), it must grow by 100% (doubling from $50 back to $100) just to reach the original starting capital."
+           data-incorrect-reason="Do the arithmetic: if you have $100 and lose 50%, you have $50 left. If you gain 50% on that $50, you only have $75! What percentage gain is needed to go from $50 back to $100?">
+        <div class="test-widget-badge">TEST YOUR UNDERSTANDING / ARTICLE 08</div>
+        <div class="test-widget-prompt">
+          If an investment portfolio suffers a catastrophic 50% loss of its value, what percentage return must it subsequently earn on its remaining capital just to break even?
+        </div>
+        <div class="test-options-list">
+          <button class="test-option-btn" type="button" data-correct="false">
+            <span>A.</span>
+            <span>50% gain.</span>
+          </button>
+          <button class="test-option-btn" type="button" data-correct="true">
+            <span>B.</span>
+            <span>100% gain.</span>
+          </button>
+          <button class="test-option-btn" type="button" data-correct="false">
+            <span>C.</span>
+            <span>75% gain.</span>
+          </button>
+        </div>
+        <div class="test-feedback"></div>
+      </div>
+
+      <!-- Related Articles -->
+      <h2>Related Articles</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
+        <a href="./volatility.html" style="background: var(--color-surface); border: 1px solid var(--color-border); padding: 1.25rem; text-decoration: none;">
+          <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--color-ink-muted);">PREVIOUS CHAPTER 07</div>
+          <strong style="font-size: 1.1rem; color: var(--color-ink);">← Volatility</strong>
+          <p style="font-size: 0.85rem; color: var(--color-ink-secondary); margin: 0.35rem 0 0;">Statistical variance vs permanent capital ruin.</p>
+        </a>
+
+        <a href="./financial-assets.html" style="background: var(--color-surface); border: 1px solid var(--color-border); padding: 1.25rem; text-decoration: none;">
+          <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--color-ink-muted);">NEXT CHAPTER 09</div>
+          <strong style="font-size: 1.1rem; color: var(--color-ink);">Financial Assets →</strong>
+          <p style="font-size: 0.85rem; color: var(--color-ink-secondary); margin: 0.35rem 0 0;">Legal claims on future societal wealth.</p>
+        </a>
+      </div>
+
+      <!-- Ad Slot 2 -->
+      <div class="ad-slot">
+        <div class="ad-slot-label">ADVERTISEMENT</div>
+        <p class="ad-slot-placeholder-text">
+          Reserved for independent university presses and public open data archives.
+        </p>
+        <div class="ad-slot-disclaimer">Zero broker referrals · Static transparent delivery</div>
+      </div>
+
+    </div>
+
+    <!-- Article Navigation -->
+    <div class="concept-nav-bar">
+      <a href="./volatility.html" class="concept-nav-link">
+        <span class="concept-nav-label">← Previous Chapter</span>
+        <span class="concept-nav-title">Volatility</span>
+      </a>
+      <a href="./financial-assets.html" class="concept-nav-link next">
+        <span class="concept-nav-label">Next Chapter →</span>
+        <span class="concept-nav-title">Financial Assets</span>
+      </a>
+    </div>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="site-logo" style="margin-bottom: 0.75rem;">
+            EASY<span class="period">.</span>
+          </div>
+          <p>
+            An independent, completely free static educational publication about financial markets. Dedicated to logic first, evidence second, and labels last.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html">Homepage</a></li>
+            <li><a href="../start.html">Start Here</a></li>
+            <li><a href="../markets.html">Markets Directory</a></li>
+            <li><a href="../articles.html">Article Index</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Initial Articles</h4>
+          <ul class="footer-links">
+            <li><a href="./what-is-trade.html">What is Trade?</a></li>
+            <li><a href="./what-is-money.html">What is Money?</a></li>
+            <li><a href="./what-is-a-market.html">What is a Market?</a></li>
+            <li><a href="./how-price-is-formed.html">Price Formation</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Integrity Guarantee</h4>
+          <div style="font-size: 0.85rem; color: var(--color-ink-secondary); line-height: 1.5;">
+            Zero retail trading signals. Zero subscription paywalls. Educational public good.
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom"><div class="footer-legal"><a href="../about.html">About</a> · <a href="../contact.html">Contact</a> · <a href="../privacy.html">Privacy Policy</a></div>
+        <div>&copy; 2026 EASY. Free Public Financial Education.</div>
+        <div>Logic First · Evidence Second · Labels Last</div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
