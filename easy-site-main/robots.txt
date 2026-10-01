@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://market551.github.io/sitemap.xml
